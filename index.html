@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart AI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f5f9;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 18px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .chat {
+      height: calc(100vh - 140px);
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .message {
+      padding: 12px 15px;
+      margin: 10px 0;
+      border-radius: 15px;
+      max-width: 85%;
+      line-height: 1.5;
+    }
+
+    .ai {
+      background: white;
+      margin-right: auto;
+    }
+
+    .user {
+      background: #2563eb;
+      color: white;
+      margin-left: auto;
+    }
+
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 10px;
+      display: flex;
+      gap: 8px;
+      box-shadow: 0 -2px 10px #ccc;
+    }
+
+    input {
+      flex: 1;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    🤖 Smart AI
+  </div>
+
+  <div class="chat" id="chat">
+    <div class="message ai">
+      👋 হ্যালো! আমি Smart AI। তোমাকে কীভাবে সাহায্য করতে পারি?
+    </div>
+  </div>
+
+  <div class="bottom">
+    <input
+      type="text"
+      id="input"
+      placeholder="এখানে প্রশ্ন লিখুন..."
+      onkeydown="if(event.key==='Enter') sendMessage()"
+    >
+
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("input");
+      const chat = document.getElementById("chat");
+
+      const question = input.value.trim();
+
+      if (question === "") return;
+
+      // User message
+      const userMessage = document.createElement("div");
+      userMessage.className = "message user";
+      userMessage.innerText = question;
+      chat.appendChild(userMessage);
+
+      input.value = "";
+
+      // Demo AI reply
+      setTimeout(() => {
+        const aiMessage = document.createElement("div");
+        aiMessage.className = "message ai";
+        aiMessage.innerText =
+          "আমি Smart AI 🤖। তোমার প্রশ্নটি পেয়েছি: " + question;
+        chat.appendChild(aiMessage);
+
+        chat.scrollTop = chat.scrollHeight;
+      }, 500);
+
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+
+</body>
+      </html>
